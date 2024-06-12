@@ -20,7 +20,7 @@ $ ./build.sh sqlite
 
 ## Mail server
 
-Please read the `README.md` in the `smtp` directory.
+Please read the `README.md` in the `docker-smtp` directory.
 
 Also, replace `DOMAIN` with your own domain.
 
