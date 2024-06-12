@@ -1,0 +1,65 @@
+services:
+  redis:
+    image: redis:7.2.5-alpine
+    restart: unless-stopped
+    expose:
+      - 6379
+    networks:
+      - server
+
+  itpg_server:
+    image: "vanillaiice/itpg:0.7.0-golang1.22.1-alpine"
+    restart: unless-stopped
+    expose:
+      - 5555
+    command: "--load data/config-sqlite.toml"
+    depends_on:
+      - redis
+      - smtp
+    networks:
+      - server
+      - client
+      - mail
+    volumes:
+      - ./data:/data
+
+  itpg_frontend:
+    build:
+      context: "https://github.com/vanillaiice/itpg-frontend.git"
+      args:
+        - API_URL=${API_URL}
+    restart: unless-stopped
+    environment:
+      - ORIGIN=${ORIGIN}
+      - HOST=itpg_frontend
+      - PORT=6666
+    expose:
+      - 6666
+    depends_on:
+      - itpg_server
+    networks:
+      - client
+
+  caddy:
+    image: "caddy:2.7.6-alpine"
+    restart: unless-stopped
+    depends_on:
+      - itpg_server
+      - itpg_frontend
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - client
+    volumes:
+      - caddy_data:/data
+      - ./Caddyfile:/etc/caddy/Caddyfile
+
+networks:
+  server: {}
+  client: {}
+  mail: {}
+
+volumes:
+  caddy_data: {}
+  pgdata: {}

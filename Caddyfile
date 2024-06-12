@@ -1,0 +1,8 @@
+{$API_URL} {
+	encode gzip
+	reverse_proxy http://itpg_server:5555
+}
+
+{$ORIGIN} {
+  reverse_proxy http://itpg_frontend:6666
+}

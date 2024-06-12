@@ -1,0 +1,61 @@
+# ITPG backend config
+
+# Port to listen on
+port = "5555"
+
+# Database backend (sqlite or postgres)
+db-backend = "postgres"
+
+# database connection URL
+db = "postgres://postgres:password@postgres:5432/db"
+
+# users database where users are stored
+users-db = "users.db"
+
+# redis cache database URL
+cache-db = "redis://redis:6379"
+
+# cache time-to-live in seconds
+cache-ttl = 10
+
+# log level (debug, info, warn, error, fatal)
+log-level = "info"
+
+# cookie timeout in minutes
+cookie-timeout = 120
+
+# environment variables for the SMTP server
+smtp-env = ".env"
+
+# password reset URL (link to client where users can reset passwords)
+pass-reset-url = "https://<DOMAIN>/resetpass"
+
+# allowed origins for CORS
+allowed-origins = ["<DOMAIN>"]
+
+# mail domains that are allowed to create an account.
+allowed-mail-domains = ["gmail.com", "yahoo.com", "tutanota.com", "outlook.com", "proton.me"]
+
+# use SMTP instead of SMTPS
+smtp = false
+
+# use HTTP instead of HTTPS
+http = false
+
+# path to server certificate
+# cert = "server.crt"
+
+# path to server key
+# key = "server.key"
+
+# code validity in minutes
+code-validity = 180
+
+# code length (between 8 and 32)
+code-length = 10
+
+# minimum accepted password score computed by zxcvbn (between 0 and 4)
+min-password-score = 3
+
+# path to handlers json config
+handlers = "handlers.json"
