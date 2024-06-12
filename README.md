@@ -22,6 +22,8 @@ $ ./build.sh sqlite
 
 Please read the `README.md` in the `smtp` directory.
 
+Also, replace `DOMAIN` with your own domain.
+
 ## env file
 
 Please fill out the `.env` file in the root directory with the following values:
@@ -32,6 +34,6 @@ Please fill out the `.env` file in the root directory with the following values:
 
 ## Config
 
-In the `data/config-*.toml` files, please replace <DOMAIN> with the URL where [itpg-frontend](https://github.com/vanillaiice/itpg-frontend) is running.
+In the `data/config-*.toml` files, please replace `DOMAIN` with the URL where [itpg-frontend](https://github.com/vanillaiice/itpg-frontend) is running.
 
 Also feel free to play around with the other settings in the `data/config-*.toml` files.
