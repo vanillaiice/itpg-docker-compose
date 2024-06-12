@@ -2,6 +2,12 @@
 
 Docker compose files for a working setup of [itpg](https://github.com/vanillaiice/itpg).
 
+# Installation
+
+```
+$ git clone https://github.com/vanillaiice/itpg-docker-compose --recursive
+```
+
 # Usage
 
 The build script will spin up the itpg-server and itpg-frontend containers.
