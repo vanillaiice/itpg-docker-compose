@@ -1,0 +1,36 @@
+services:
+  redis:
+    image: redis:7.2.5-alpine
+    restart: unless-stopped
+    expose:
+      - 6379
+
+  itpg_server:
+    image: "ghcr.io/vanillaiice/itpg:0.7.3-golang1.23.1-alpine"
+    restart: unless-stopped
+    environment:
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=password
+      - ADMIN_EMAIL=admin@admin.com
+    ports:
+      - 5555:5555
+    command: "--load data/config.toml"
+    depends_on:
+      - redis
+    volumes:
+      - ./data:/data
+
+  itpg_frontend:
+    build:
+      context: "https://github.com/vanillaiice/itpg-frontend.git"
+      args:
+        - API_URL=http://localhost:5555
+    restart: unless-stopped
+    environment:
+      - ADAPTER=bun
+      - HOST=itpg_frontend
+      - PORT=9999
+    ports:
+      - 9999:9999
+    depends_on:
+      - itpg_server

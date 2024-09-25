@@ -1,3 +1,0 @@
-[submodule "docker-smtp"]
-	path = docker-smtp
-	url = https://github.com/vanillaiice/docker-smtp

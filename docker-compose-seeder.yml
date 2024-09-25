@@ -1,0 +1,8 @@
+services:
+  itpg_seeder:
+    build:
+      context: "https://github.com/vanillaiice/itpg-seeder.git"
+    restart: no
+    command: "--db-backend sqlite --db-url 'file:data/itpg.db?journal_mode=memory&sync_mode=off&mode=rwc'"
+    volumes:
+      - ./data:/data
