@@ -15,11 +15,11 @@ do
 done
 
 if [ "$down" = true ]; then
-	docker compose -f ./docker-compose.yml down; exit 0;	
+	docker compose down; exit 0;	
 fi
 
 if [ "$seed" = true ]; then
 	docker compose -f ./docker-compose-seeder.yml up && docker compose -f ./docker-compose-seeder.yml down
 fi
 
-docker compose -f ./docker-compose.yml up
+docker compose up
