@@ -4,9 +4,11 @@ services:
     restart: unless-stopped
     expose:
       - 6379
+    networks:
+      - server
 
   itpg_server:
-    image: "ghcr.io/vanillaiice/itpg:0.7.3-golang1.23.1-alpine"
+    image: "ghcr.io/vanillaiice/itpg:0.7.5-golang1.23.1-alpine"
     restart: unless-stopped
     environment:
       - ADMIN_USERNAME=admin
@@ -17,6 +19,8 @@ services:
     command: "--load data/config.toml"
     depends_on:
       - redis
+    networks:
+      - server
     volumes:
       - ./data:/data
 
@@ -27,10 +31,13 @@ services:
         - API_URL=http://localhost:5555
     restart: unless-stopped
     environment:
+      - ORIGIN=http://localhost:9999
       - ADAPTER=bun
-      - HOST=itpg_frontend
       - PORT=9999
     ports:
       - 9999:9999
     depends_on:
       - itpg_server
+
+networks:
+  server: {}
