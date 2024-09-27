@@ -26,6 +26,6 @@ $ ./build.sh -d
 
 ## Config
 
-In the `data/config-*.toml` files, please replace `DOMAIN` with the URL where [itpg-frontend](https://github.com/vanillaiice/itpg-frontend) is running.
+In the `data/config.toml` files, please replace `DOMAIN` with the URL where [itpg-frontend](https://github.com/vanillaiice/itpg-frontend) is running.
 
 Also feel free to play around with the other settings in the `data/config.toml` file.
